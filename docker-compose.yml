@@ -1,0 +1,29 @@
+version: "3"
+service:
+  api:
+    build: .
+    depends_on:
+      - postgres
+    ports:
+      - 4000:8000
+    volumes:
+      - ./:/urc/src/app:ro
+    coomand: uvicorn app.app:app --host 0.0.0.0 --port 8000 --reload
+    # env_file:
+    #   - ./.env
+    enviroment: -SECRET_KEY =${SECRET_KEY}
+      -ALGORITHM =${ALGORITHM}
+      -database_url_test=${database_url_test}
+      -database_url=${database_url}
+      -ACCESS_TOKEN_EXPIRE_DAYS =${ACCESS_TOKEN_EXPIRE_DAYS}
+
+  postgres:
+    image: postgres
+    enviroment:
+      - POSTGRES_PASSWORD = password123
+      - POSTGRES_DB = influencer
+    volumes:
+      - postgres_bd:/var/lob/postgres/data
+
+volumes:
+  - postgres_db:
