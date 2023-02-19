@@ -72,3 +72,4 @@ def test_search_with_query(test_ig_acc,client):
     assert data['follower_count']==10000
     assert data['bio']=='i am a fullstack developer'
     assert data['user_id']==1
+
