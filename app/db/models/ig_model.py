@@ -5,7 +5,7 @@ from sqlalchemy.sql.expression import text
 
 
 class Instagrammer(Base):
-    __tablename__='instagrammers'
+    __tablename__="instagrammers"
     id=Column(Integer,primary_key=True,index=True)
     username=Column(String)
     follower_count=Column(Integer)
